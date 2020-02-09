@@ -1,2 +1,2 @@
 # cs193p
-cs193p_Concentration
+Stanford university course cs193p about iOS development.
