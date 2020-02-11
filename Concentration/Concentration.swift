@@ -48,6 +48,16 @@ class Concentration
         }
     }
     
+    func reset(){
+        scoreCount = 0
+        flipCount = 0
+        for i in 0..<cards.count{
+            cards[i].isFaceUp = false
+            cards[i].isMatched = false
+            cards[i].wasFaceUp = false
+        }
+    }
+    
     init(numberOfPairsOfCards: Int) {
         assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards): game should have at least one pair of cards")
         for _ in 1...numberOfPairsOfCards {
