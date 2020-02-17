@@ -10,7 +10,6 @@ import Foundation
 
 struct Card: Hashable, Equatable
 {
-    var hashValue: Int { return identifier }
     static func ==(lhs: Card, rhs: Card) -> Bool {
         return lhs.identifier == rhs.identifier
     }
@@ -25,6 +24,10 @@ struct Card: Hashable, Equatable
     private static func getUniqueIdentifier() -> Int {
         identifiedFactory += 1
         return identifiedFactory
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(identifier)
     }
     
     init() {
