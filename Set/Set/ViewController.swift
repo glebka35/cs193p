@@ -34,7 +34,7 @@ class ViewController: UIViewController {
    
     @IBOutlet weak var scoreCounterLabel: UILabel!{
         didSet{
-            updateSetsCounterLabel()
+            updateScoreCounterLabel()
         }
     }
     
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addCardsInGame(_ sender: Any) {
-        if game.deckInGame.count <= 21 || game.isSet() {
+        if game.deckInGame.count <= 21 || game.isSet {
             game.addCards()
             updateViewFromModel()
         }
@@ -80,8 +80,8 @@ class ViewController: UIViewController {
                 setAttributedStringToButton(for: button, from: game.deckInGame[index])
                 let card = game.deckInGame[index]
                 if game.cardsSelecting.contains(card){
-                    if game.cardsSelecting.count == 3 {
-                        button.borderColor = game.isSet() ? ButtonCard.DefaultValues.BorderColors.matching : ButtonCard.DefaultValues.BorderColors.nonMatching
+                    if game.numberOfChosenCards == game.defaultNumberOfAddingCards {
+                        button.borderColor = game.isSet ? ButtonCard.DefaultValues.BorderColors.matching : ButtonCard.DefaultValues.BorderColors.nonMatching
                     } else {
                         button.borderColor = ButtonCard.DefaultValues.BorderColors.chosen
                     }
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
             }
         }
         updateDeckCounterLabel()
-        updateSetsCounterLabel()
+        updateScoreCounterLabel()
     }
     
     private func setAttributedStringToButton(for button: ButtonCard, from card: Card){
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         deckCounterLabel.text = "Deck: \(game.deckHidden.count)"
     }
     
-    private func updateSetsCounterLabel(){
+    private func updateScoreCounterLabel(){
         scoreCounterLabel.text = "Score: \(game.scoreCounter)"
     }
 }

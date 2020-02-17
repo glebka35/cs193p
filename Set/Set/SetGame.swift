@@ -11,50 +11,65 @@ import Foundation
 class SetGame {
     
     private let defaultNumberOfStartCards = 12
-    private let defaultNumberOfAddingCards = 3
+    let defaultNumberOfAddingCards = 3
     private(set) var deckInGame = [Card]()
     private(set) var cardsSelecting = [Card]()
     private(set) var deckHidden = [Card]()
-    private var wasSet = false
+    private(set) var isSet = false
     private(set) var scoreCounter = 0
     
-    private var numberOfChosenCards: Int {cardsSelecting.count}
+    var checkSet: Bool {
+        get{
+            return isSet
+        }
+        
+        set{
+            guard cardsSelecting.count == defaultNumberOfAddingCards  else {
+                isSet = false
+                return
+            }
+            let setArray = [
+                cardsSelecting.reduce(0, {$0+$1.color.getType()}),
+                cardsSelecting.reduce(0, {$0+$1.shape.getType()}),
+                cardsSelecting.reduce(0, {$0+$1.fill.getType()}),
+                cardsSelecting.reduce(0, {$0+$1.number.getType()})]
+            isSet = setArray.reduce(true, {$0 && ($1 % 3 == 0)})
+            if !isSet {scoreCounter -= 3} else {scoreCounter += 5}
+        }
+    }
+    
+    var numberOfChosenCards: Int {cardsSelecting.count}
     
     init(){
         makeDeck()
     }
     
-    func isSet() -> Bool {
-        guard cardsSelecting.count == defaultNumberOfAddingCards  else {return false}
-        let setArray = [
-            cardsSelecting.reduce(0, {$0+$1.color.getType()}),
-            cardsSelecting.reduce(0, {$0+$1.shape.getType()}),
-            cardsSelecting.reduce(0, {$0+$1.fill.getType()}),
-            cardsSelecting.reduce(0, {$0+$1.number.getType()})]
-        wasSet = setArray.reduce(true, {$0 && ($1 % 3 == 0)})
-        return wasSet
-    }
-    
     func chooseCard(at index: Int) {
         switch numberOfChosenCards {
-        case 0...2: if let indexInMatchingCards = cardsSelecting.firstIndex(of: deckInGame[index]) {
-            cardsSelecting.remove(at: indexInMatchingCards)
+        case 0...2:
+            if let indexInMatchingCards = cardsSelecting.firstIndex(of: deckInGame[index]) {
+                cardsSelecting.remove(at: indexInMatchingCards)
         } else {cardsSelecting.append(deckInGame[index])}
+            checkSet = true
         case 3:
-            if wasSet {replaceCardsInGameFromHidden()}
+            let selectedCard = deckInGame[index]
+            if isSet {
+                replaceCardsInGameFromHidden()
+            }
             cardsSelecting.removeAll()
-            cardsSelecting.append(deckInGame[index])
-            
+            cardsSelecting.append(selectedCard)
+            checkSet = false
         default: break
         }
     }
     
     func addCards() {
-        if isSet() {
+        if isSet {
             replaceCardsInGameFromHidden()
-            scoreCounter += 5
+            cardsSelecting.removeAll()
+            checkSet = true
         } else {
-            scoreCounter = cardsSelecting.count == 3 ? scoreCounter - 3 : scoreCounter - 1
+            scoreCounter -= 1
             addCardInGameFromHidden(number: defaultNumberOfAddingCards)
         }
     }
@@ -69,7 +84,7 @@ class SetGame {
     }
     
     private func replaceCardsInGameFromHidden(){
-            if deckHidden.count > 0 && deckInGame.count < defaultNumberOfStartCards{
+            if deckHidden.count > 0 && deckInGame.count <= defaultNumberOfStartCards{
                 for card in cardsSelecting {
                     if let index = deckInGame.firstIndex(of: card) {
                         deckInGame[index] = deckHidden.remove(at: 0)
@@ -82,7 +97,6 @@ class SetGame {
                     }
                 }
             }
-        cardsSelecting.removeAll()
     }
     
     func newGame(){
@@ -90,8 +104,8 @@ class SetGame {
         deckHidden.removeAll()
         cardsSelecting.removeAll()
         scoreCounter = 0
+        isSet = false
         makeDeck()
-        
     }
     
     private func makeDeck(){
