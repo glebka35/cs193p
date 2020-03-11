@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class ConcentrationViewController: UIViewController
 {
     @IBOutlet private weak var flipCountLabel: UILabel!{
         didSet{

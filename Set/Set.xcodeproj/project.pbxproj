@@ -13,7 +13,9 @@
 		F71BA8D923F55A8F00652206 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71BA8D723F55A8F00652206 /* Main.storyboard */; };
 		F71BA8DB23F55A9100652206 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71BA8DA23F55A9100652206 /* Assets.xcassets */; };
 		F71BA8DE23F55A9100652206 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71BA8DC23F55A9100652206 /* LaunchScreen.storyboard */; };
-		F7BDC07F23F55B9C00705359 /* ButtonCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BDC07E23F55B9C00705359 /* ButtonCard.swift */; };
+		F73EBB472418D3910073B4C6 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73EBB462418D3910073B4C6 /* BoardView.swift */; };
+		F73EBB492418DE840073B4C6 /* ViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73EBB482418DE840073B4C6 /* ViewCard.swift */; };
+		F754F5EA240D6A6800DDB44A /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F754F5E9240D6A6800DDB44A /* Grid.swift */; };
 		F7BDC08123F5857E00705359 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BDC08023F5857E00705359 /* SetGame.swift */; };
 		F7BDC08323F585BA00705359 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BDC08223F585BA00705359 /* Card.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +29,9 @@
 		F71BA8DA23F55A9100652206 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F71BA8DD23F55A9100652206 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F71BA8DF23F55A9100652206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7BDC07E23F55B9C00705359 /* ButtonCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCard.swift; sourceTree = "<group>"; };
+		F73EBB462418D3910073B4C6 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		F73EBB482418DE840073B4C6 /* ViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCard.swift; sourceTree = "<group>"; };
+		F754F5E9240D6A6800DDB44A /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		F7BDC08023F5857E00705359 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		F7BDC08223F585BA00705359 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,10 +66,12 @@
 		F71BA8D023F55A8F00652206 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				F754F5E9240D6A6800DDB44A /* Grid.swift */,
 				F71BA8DF23F55A9100652206 /* Info.plist */,
 				F71BA8D523F55A8F00652206 /* ViewController.swift */,
 				F71BA8D723F55A8F00652206 /* Main.storyboard */,
-				F7BDC07E23F55B9C00705359 /* ButtonCard.swift */,
+				F73EBB462418D3910073B4C6 /* BoardView.swift */,
+				F73EBB482418DE840073B4C6 /* ViewCard.swift */,
 				F7BDC08023F5857E00705359 /* SetGame.swift */,
 				F7BDC08223F585BA00705359 /* Card.swift */,
 				F71BA8E523F55ABF00652206 /* SupportingFiles */,
@@ -156,10 +162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BDC08123F5857E00705359 /* SetGame.swift in Sources */,
+				F73EBB492418DE840073B4C6 /* ViewCard.swift in Sources */,
 				F7BDC08323F585BA00705359 /* Card.swift in Sources */,
 				F71BA8D623F55A8F00652206 /* ViewController.swift in Sources */,
-				F7BDC07F23F55B9C00705359 /* ButtonCard.swift in Sources */,
 				F71BA8D223F55A8F00652206 /* AppDelegate.swift in Sources */,
+				F73EBB472418D3910073B4C6 /* BoardView.swift in Sources */,
+				F754F5EA240D6A6800DDB44A /* Grid.swift in Sources */,
 				F71BA8D423F55A8F00652206 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

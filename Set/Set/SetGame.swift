@@ -53,11 +53,12 @@ class SetGame {
             checkSet = true
         case 3:
             let selectedCard = deckInGame[index]
+            let isNewCardChosen = !cardsSelecting.contains(selectedCard)
             if isSet {
                 replaceCardsInGameFromHidden()
             }
             cardsSelecting.removeAll()
-            cardsSelecting.append(selectedCard)
+            if isNewCardChosen{cardsSelecting.append(selectedCard)}
             checkSet = false
         default: break
         }
@@ -77,8 +78,10 @@ class SetGame {
     private func addCardInGameFromHidden(number: Int){
         if number > 0 {
             let minNumber = min(number, deckHidden.count)
-            for _ in 1...minNumber{
-                deckInGame += [deckHidden.remove(at: 0)]
+            if minNumber >= 3{
+                for _ in 1...minNumber{
+                    deckInGame += [deckHidden.remove(at: 0)]
+                }
             }
         }
     }
@@ -106,6 +109,10 @@ class SetGame {
         scoreCounter = 0
         isSet = false
         makeDeck()
+    }
+    
+    func shuffle(){
+        deckInGame.shuffle()
     }
     
     private func makeDeck(){
